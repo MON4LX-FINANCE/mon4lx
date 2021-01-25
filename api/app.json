@@ -1,0 +1,8 @@
+{
+    "name": "Mon4lx API",
+    "description": "A Node.js api using Express 4",
+    "repository": "https://github.com/",
+    "logo": "https://",
+    "keywords": ["node", "express", "static"]
+  }
+  
