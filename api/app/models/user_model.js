@@ -9,8 +9,8 @@ var helpers = require('../helpers/functions');
 var User = {};
 
 // Create user
-// Required fields: email, password
-// Optional fields: phone, address_1, address_2, country, firstname, lastname
+// Required fields: email, password, username, phone, pin
+// Optional fields: location, firstname, lastname, othernames, businessname
 User.createUser = function (newUser, result) {
 
   // Hash the password
@@ -21,13 +21,13 @@ User.createUser = function (newUser, result) {
   // Add token to the user data object
   newUser.token = token;
 
-  if (newUser.email && newUser.password) {
+  if (newUser.email && newuser.username && newUser.phone && newUser.pin && newUser.password) {
     con.query("INSERT INTO users SET ?", newUser, function (err, res) {
 
       if (err) {
         result(err, null);
       } else {
-        con.query("SELECT * FROM users WHERE user_id = ?", res.insertId, function (_err, _res) {
+        con.query("SELECT * FROM users WHERE userId = ?", res.insertId, function (_err, _res) {
           if (_err)
             result(_err, null);
           else
@@ -72,7 +72,7 @@ User.getTokenByEmail = function (email) {
 // Optional fields: none
 User.getUserById = function (userId, result) {
   if (userId) {
-    con.query("SELECT * FROM users WHERE user_id = ? ", userId, function (err, res) {
+    con.query("SELECT * FROM users WHERE userId = ? ", userId, function (err, res) {
       if (err) {
         result(err, null);
       } else {
@@ -89,7 +89,7 @@ User.getUserById = function (userId, result) {
 // Optional fields: none
 User.getIdByEmail = function (email, result) {
   if (email) {
-    con.query("SELECT user_id FROM users WHERE email = ? ", email, function (err, res) {
+    con.query("SELECT userId FROM users WHERE email = ? ", email, function (err, res) {
       if (err) {
         result(err, null);
       } else {
@@ -130,13 +130,14 @@ User.userLogin = function (params, result) {
 
   var _password = params.password;
   var _email = params.email;
+  var _token = params.token;
 
   // Hash user password
   var _hashedPassword = helpers.hash(_password);
 
-  if (_email && _hashedPassword) {
+  if (_email && _hashedPassword && _token) {
 
-    con.query("SELECT password FROM users WHERE email = ? ", _email, function (err, res) {
+    con.query("SELECT password FROM users WHERE email = ?", _email, function (err, res) {
 
       if (err) {
         result(err, null);
@@ -180,14 +181,14 @@ User.getAllUsers = function (result) {
 // Update user helper function
 let update = function (col, value, id, result) {
 
-  con.query("UPDATE users SET " + col + " = ? WHERE user_id = ?", [
+  con.query("UPDATE users SET " + col + " = ? WHERE userId = ?", [
     value, id
   ], function (err, res) {
     if (err) {
       result(err, null);
     } else {
       // Get the updated user data
-      con.query("SELECT * FROM users WHERE user_id = ?", id, function (_err, _res) {
+      con.query("SELECT * FROM users WHERE userId = ?", id, function (_err, _res) {
         if (err) {
           // console.log('update helper function error', _err)
           result(err, null);
@@ -212,17 +213,17 @@ User.updateUserById = function (id, body, result) {
   if (body.password) {
     update('password', body.password, id, result)
   }
-  if (body.address_1) {
-    update('address_1', body.address_1, id, result)
+  if (body.location) {
+    update('location', body.location, id, result)
   }
-  if (body.address_2) {
-    update('address_2', body.address_2, id, result)
+  if (body.othernames) {
+    update('othernames', body.othernames, id, result)
   }
   if (body.phone) {
     update('phone', body.phone, id, result)
   }
-  if (body.country) {
-    update('country', body.country, id, result)
+  if (body.businessname) {
+    update('businessname', body.businessname, id, result)
   }
   if (body.username) {
     update('username', body.username, id, result)
@@ -233,11 +234,14 @@ User.updateUserById = function (id, body, result) {
   if (body.lastname) {
     update('lastname', body.lastname, id, result)
   }
+  if (body.pin) {
+    update('pin', body.pin, id, result)
+  }
 };
 
 // Delete user(s)
 User.remove = function (id, result) {
-  con.query("DELETE FROM users WHERE user_id = ?", [id], function (err, res) {
+  con.query("DELETE FROM users WHERE userId = ?", [id], function (err, res) {
 
     if (err) {
       result(err, null);

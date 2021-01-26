@@ -21,8 +21,12 @@ module.exports = function (app) {
     app.route('/users/email/:email')
         .get(users.get_user_id);
 
-    // Login route
+    // Login
     app.route('/users/login')
         .get(users.user_login);
+
+    // Get user token by email
+    app.route('/users/token/:email')
+        .get(users.get_token_by_email);
 
 };
