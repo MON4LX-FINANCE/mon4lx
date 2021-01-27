@@ -7,9 +7,9 @@ Node JS API
 <!-- GET -->
 /users
 
-<!-- create new user -->
-<!-- Required fields: Required fields: email, password, username, phone, pin -->
-<!-- Optional fields: location, firstname, lastname, othernames, businessname -->
+// create new user
+# Required fields: Required fields: email, password, username, phone, pin -->
+## Optional fields: location, firstname, lastname, othernames, businessname -->
 <!-- POST -->
 /users
 
