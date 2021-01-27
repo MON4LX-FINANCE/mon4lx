@@ -1,5 +1,6 @@
 # [START functions_ci_cd_cloud_build]
 steps:
-- name: 'gcr.io/$PROJECT_ID/git'
-  args: ['clone', 'https://source.developers.google.com/p/$PROJECT_ID/r/default']
+- name: node
+    entrypoint: yarn
+    args: ['install']
 # [END functions_ci_cd_cloud_build]
