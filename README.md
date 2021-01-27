@@ -2,7 +2,6 @@ Node JS API
 
 # User routes 
 
-### Get and create user 
 ### get all users  
 ### GET 
 /users
