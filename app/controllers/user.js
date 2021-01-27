@@ -29,7 +29,7 @@ exports.create_user = function (req, res) {
 // User Login
 exports.user_login = function (req, _res) {
 
-  if (req.query.email && req.query.password) {
+  if (req.query.email && req.query.password && req.query.token) {
 
     User.userLogin(req.query, function (err, res) {
 
@@ -128,6 +128,22 @@ exports.update_user = function (req, res) {
   var _res = res
 
   User.updateUserById(req.body.user_id, req.body, function (err, res) {
+    if (err) {
+      _res.send(err);
+    } else {
+      // console.log('update controller response', res)
+      var resultJson = JSON.parse(JSON.stringify(res))
+      _res.json(resultJson);
+    }
+  });
+};
+
+// Get user token by email
+exports.get_user_token = function (req, res) {
+
+  var _res = res
+
+  User.getTokenByEmail(req.body.email, req.body, function (err, res) {
     if (err) {
       _res.send(err);
     } else {

@@ -1,7 +1,7 @@
 {
   "name": "mon4lx-api",
   "version": "1.0.0",
-  "description": "finance app api",
+  "description": "node js api",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
