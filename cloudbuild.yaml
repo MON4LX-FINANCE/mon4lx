@@ -1,4 +1,4 @@
-# [START functions_ci_cd_cloud_build]
+steps:
 # Install dependencies
 - name: node
   entrypoint: yarn
@@ -11,4 +11,3 @@
 - name: node
   entrypoint: yarn
   args: ['run', 'build']
-# [END functions_ci_cd_cloud_build]
