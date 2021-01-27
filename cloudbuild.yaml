@@ -10,4 +10,4 @@ steps:
 # Run custom commands
 - name: node
   entrypoint: yarn
-  args: ['run', 'build']
+  args: ['run']
