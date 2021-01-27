@@ -8,8 +8,8 @@ var mysql = require('mysql');
 var connection = mysql.createPool({
     connectionLimit: 5, //important
     host: 'localhost',
-    user: 'root',
-    password: '',
+    user: 'mon4lx',
+    password: 'depressed_gap',
     database: 'mon4lx',
     debug: false
 });

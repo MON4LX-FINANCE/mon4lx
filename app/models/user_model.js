@@ -21,7 +21,7 @@ User.createUser = function (newUser, result) {
   // Add token to the user data object
   newUser.token = token;
 
-  if (newUser.email && newuser.username && newUser.phone && newUser.pin && newUser.password) {
+  if (newUser.email && newUser.username && newUser.phone && newUser.pin && newUser.password) {
     con.query("INSERT INTO users SET ?", newUser, function (err, res) {
 
       if (err) {
