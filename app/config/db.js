@@ -7,7 +7,7 @@ var mysql = require('mysql');
 //mysql db connection
 var connection = mysql.createPool({
     connectionLimit: 5, //important
-    host: 'localhost',
+    host: 'https://34.121.95.210',
     user: 'mon4lx',
     password: 'depressed_gap',
     database: 'mon4lx',
