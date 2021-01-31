@@ -11,7 +11,12 @@ var connection = mysql.createPool({
     user: 'root',
     password: 'e60CeL5syAuPD5KM',
     database: 'mon4lx',
-    debug: false
+    debug: false,
+    ssl      : {
+        ca   : fs.readFileSync('./ssl/server-ca.pem'), // should be enough for AWS
+        key  : fs.readFileSync('./ssl/client-key.pem'), // required for google mysql cloud db
+        cert : fs.readFileSync('./ssl/client-cert.pem'), // required for google mysql cloud db
+  }
 });
 
 connection.getConnection(function (err) {
