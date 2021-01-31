@@ -139,7 +139,7 @@ exports.update_user = function (req, res) {
 };
 
 // Get user token by email
-exports.get_user_token = function (req, res) {
+exports.get_token_by_email = function (req, res) {
 
   var _res = res
 
