@@ -14,9 +14,9 @@ var connection = mysql.createPool({
     database: 'mon4lx',
     debug: false,
     ssl      : {
-        ca   : fs.readFileSync('./ssl/server-ca.pem'), // should be enough for AWS
-        key  : fs.readFileSync('./ssl/client-key.pem'), // required for google mysql cloud db
-        cert : fs.readFileSync('./ssl/client-cert.pem'), // required for google mysql cloud db
+        ca   : fs.readFileSync('../ssl/server-ca.pem'), // should be enough for AWS
+        key  : fs.readFileSync('../ssl/client-key.pem'), // required for google mysql cloud db
+        cert : fs.readFileSync('../ssl/client-cert.pem'), // required for google mysql cloud db
   }
 });
 
