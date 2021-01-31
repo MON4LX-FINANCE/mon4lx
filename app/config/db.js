@@ -3,6 +3,7 @@
  */
 
 var mysql = require('mysql');
+var fs     = require('fs');
 
 //mysql db connection
 var connection = mysql.createPool({
