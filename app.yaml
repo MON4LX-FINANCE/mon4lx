@@ -1,0 +1,8 @@
+runtime: nodejs10
+
+env_variables:
+  DB_USER: "root"
+  DB_NAME: "mon4lx"
+  DB_PASS: "e60CeL5syAuPD5KM"
+  DB_INSTANCE: "rising-pen-293118:europe-west2:mon4lx-db"
+  TESTVAR: "test"
