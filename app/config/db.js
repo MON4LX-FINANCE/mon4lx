@@ -13,6 +13,7 @@ var connection = mysql.createPool({
     password: 'e60CeL5syAuPD5KM',
     database: 'mon4lx',
     debug: false,
+    socketPath: `/cloudsql/${process.env.INSTANCE_CONNECTION_NAME}`,
     ssl      : {
         ca   : fs.readFileSync('./app/ssl/server-ca.pem'), // should be enough for AWS
         key  : fs.readFileSync('./app/ssl/client-key.pem'), // required for google mysql cloud db
