@@ -12,13 +12,13 @@ module.exports = function (app) {
         .post(users.create_user);
 
     // Get, update, delete user by id
-    app.route('/users/id/:user_id')
+    app.route('/users/id/:id')
         .get(users.get_user)
         .put(users.update_user)
         .delete(users.delete_user);
 
-    // Get user's email by id
-    app.route('/users/email/:email')
+    // Get user email by id
+    app.route('/users/email/:id')
         .get(users.get_email_by_id);
 
     // Login
