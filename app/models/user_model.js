@@ -117,7 +117,7 @@ User.getIdByEmail = function (email, result) {
 // Optional fields: none
 User.getEmailById = function (id, result) {
   if (id) {
-    con.query("SELECT email FROM users WHERE id = ? ", id, function (err, res) {
+    con.query("SELECT email FROM users WHERE userId = ? ", id, function (err, res) {
       if (err) {
         result(err, null);
       } else {
