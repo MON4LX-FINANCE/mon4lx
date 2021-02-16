@@ -108,6 +108,20 @@ exports.get_user_id = function (req, res) {
   });
 };
 
+// Get user email by id
+exports.get_email_by_id = function (req, res) {
+
+  User.getEmailById(req.params.id, function (err, id) {
+
+    if (err)
+      res.send(err);
+    else {
+      var resultJson = JSON.parse(JSON.stringify(id))
+      res.json(resultJson);
+    }
+  });
+};
+
 // Get user by id
 exports.get_user = function (req, res) {
   User.getUserById(req.params.user_id, function (err, user) {

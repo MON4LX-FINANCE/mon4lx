@@ -19,7 +19,7 @@ module.exports = function (app) {
 
     // Get user's email by id
     app.route('/users/email/:email')
-        .get(users.get_user_id);
+        .get(users.get_email_by_id);
 
     // Login
     app.route('/users/login')

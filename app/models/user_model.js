@@ -5,6 +5,15 @@
 var con = require('../config/db');
 var helpers = require('../helpers/functions');
 
+var admin = require("firebase-admin");
+var serviceAccount = require("../../rising-pen-293118-firebase-adminsdk-t7erb-652b72600c.json");
+admin.initializeApp({
+  credential: admin.credential.cert(serviceAccount),
+  // databaseURL: 'https://<DATABASE_NAME>.firebaseio.com'
+});
+
+
+
 //User functions container
 var User = {};
 
@@ -82,7 +91,7 @@ User.getUserById = function (userId, result) {
       }
     });
   } else {
-    result({"Get user by id error": "Missing required field user_id"}, null);
+    result({ "Get user by id error": "Missing required field user_id" }, null);
   }
 };
 
@@ -99,7 +108,24 @@ User.getIdByEmail = function (email, result) {
       }
     });
   } else {
-    result({"Get id by email error": "Missing required field email"}, null);
+    result({ "Get id by email error": "Missing required field email" }, null);
+  }
+};
+
+// Get email by id
+// Required field: id
+// Optional fields: none
+User.getEmailById = function (id, result) {
+  if (id) {
+    con.query("SELECT email FROM users WHERE id = ? ", id, function (err, res) {
+      if (err) {
+        result(err, null);
+      } else {
+        result(null, res);
+      }
+    });
+  } else {
+    result({ "Get email by id error": "Missing required field id" }, null);
   }
 };
 
@@ -121,7 +147,7 @@ User.updateToken = function (params, result) {
         result(null, res);
     });
   } else {
-    result({"Update user token error": "Missing required fields"}, null);
+    result({ "Update user token error": "Missing required fields" }, null);
   }
 }
 

@@ -1,6 +1,9 @@
 Node JS API
 
-# User routes 
+# User routes
+
+### API url
+http://34.89.88.43
 
 ### get all users  
 ### GET 
@@ -16,9 +19,9 @@ Node JS API
 /users/id/:user_id
 
 ### GET user email by id 
-### Required field: email 
+### Required field: id 
 ### Optional fields: none 
-/users/email/:email_id
+/users/email/:user_id
 
 ### GET token by email 
 ### Required field: email 
