@@ -6,7 +6,7 @@ var con = require('../config/db');
 var helpers = require('../helpers/functions');
 
 var admin = require("firebase-admin");
-var serviceAccount = require("../../rising-pen-293118-firebase-adminsdk-t7erb-652b72600c.json");
+var serviceAccount = require("../../app/rising-pen-293118-firebase-adminsdk-t7erb-652b72600c.json");
 admin.initializeApp({
   credential: admin.credential.cert(serviceAccount),
   // databaseURL: 'https://<DATABASE_NAME>.firebaseio.com'
@@ -158,12 +158,11 @@ User.userLogin = function (params, result) {
 
   var _password = params.password;
   var _email = params.email;
-  var _token = params.token;
 
   // Hash user password
   var _hashedPassword = helpers.hash(_password);
 
-  if (_email && _hashedPassword && _token) {
+  if (_email && _hashedPassword) {
 
     con.query("SELECT password FROM users WHERE email = ?", _email, function (err, res) {
 
@@ -208,6 +207,7 @@ User.getAllUsers = function (result) {
 
 // Update user helper function
 let update = function (col, value, id, result) {
+  console.log('col, value, id',col,value,id)
 
   con.query("UPDATE users SET " + col + " = ? WHERE userId = ?", [
     value, id

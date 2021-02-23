@@ -29,69 +29,19 @@ exports.create_user = function (req, res) {
 // User Login
 exports.user_login = function (req, _res) {
 
-  if (req.query.email && req.query.password && req.query.token) {
+  if (req.query.email && req.query.password) {
 
     User.userLogin(req.query, function (err, res) {
 
       if (err) {
         _res.send(err);
       } else {
-
-        User.updateToken(res, function (err_, res_) {
-
-          if (err_) {
-            _res.send(err_);
-          } else {
-            _res.send(res);
-          }
-        });
+        _res.send(res);
       }
     });
   } else {
     _res.sendStatus(400);
   }
-
-  // var _res = res;
-  // console.log('\nheaders', req.headers);
-
-  // Get the authorization header from the request
-  // let auth = req.headers.authorization;
-  // console.log('\nauth', auth);
-
-  // Remove token part from Bearer string
-  // let token = auth.substring('Bearer '.length);
-  // console.log('\ntoken', token);
-
-  // Get user's access token from database using email
-  // let email = req.query.email;
-  // con.query("SELECT token FROM users WHERE email = ? ", email, function(err, res) {
-  //
-  //   if (err) {
-  //     console.log('\nget token error', err);
-  //   } else {
-
-  // Get the access token from the response
-  // let dbToken = res[0].token;
-  // console.log('\nget token response', dbToken);
-
-  // If the access token is the same as the one in the database, proceed
-  // if (token == dbToken) {
-
-  // Check if token is valid
-  // let tokenVerified = helpers.verifyToken(token);
-  // console.log('\ntoken verified', tokenVerified);
-
-  // If the token was verified, proceed to try to log user in
-  // if (tokenVerified) {
-  // Login
-  //       } else {
-  //         _res.sendStatus(401);
-  //       }
-  //     } else {
-  //       _res.sendStatus(401);
-  //     }
-  //   }
-  // });
 };
 
 // Get user id by email
@@ -124,7 +74,7 @@ exports.get_email_by_id = function (req, res) {
 
 // Get user by id
 exports.get_user = function (req, res) {
-  User.getUserById(req.params.user_id, function (err, user) {
+  User.getUserById(req.params.id, function (err, user) {
 
     if (err)
       res.send(err);
@@ -141,7 +91,10 @@ exports.update_user = function (req, res) {
 
   var _res = res
 
-  User.updateUserById(req.body.user_id, req.body, function (err, res) {
+  // console.log('controller body',req.body)
+  // console.log('controller params',req.params)
+
+  User.updateUserById(req.params.id, req.body, function (err, res) {
     if (err) {
       _res.send(err);
     } else {

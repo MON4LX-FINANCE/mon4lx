@@ -5,17 +5,19 @@ Node JS API
 ### API url
 http://34.89.88.43
 
-### get all users  
-### GET 
+### Add fields as parameters for GET requests
+### Add fields to request body for POST, PUT, UPDATE requests
+
+### GET all users
 /users
 
-### create new user
+### Create new user
 ### Required fields: Required fields: email, password, username, phone, pin 
 ### Optional fields: location, firstname, lastname, othernames, businessname 
 ### POST 
 /users
 
-### GET, PUT (update), DELETE user by id 
+### GET, PUT (update), DELETE user by id
 /users/id/:user_id
 
 ### GET user email by id 
@@ -28,5 +30,7 @@ http://34.89.88.43
 ### Optional fields: none 
 /users/token/:email
 
-### User login (GET) with authentication token 
-/users/login/:token
+### User login (GET) 
+### Required field: email, password
+### Optional fields: none
+/users/login
