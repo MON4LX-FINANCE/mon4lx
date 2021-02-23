@@ -25,11 +25,6 @@ http://34.89.88.43
 ### Optional fields: none 
 /users/email/:user_id
 
-### GET token by email 
-### Required field: email 
-### Optional fields: none 
-/users/token/:email
-
 ### User login (GET) 
 ### Required field: email, password
 ### Optional fields: none
